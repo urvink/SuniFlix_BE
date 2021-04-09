@@ -5,6 +5,7 @@ import com.flix.suni.service.IconsService;
 import com.flix.suni.utils.StatusCodes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class IconsController {
 		@Autowired
 		private IconsService service;
 
-		@GetMapping(produces = "application/json")
+		@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity<List<Icons>> getAllIcons(HttpServletRequest request){
 				try{
 						List<Icons> iconsList = service.findAllIcons();
@@ -32,7 +33,7 @@ public class IconsController {
 				}
 		}
 
-		@GetMapping(value = "{id}", produces = "application/json")
+		@GetMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity<Icons> getIcon(@PathVariable Long id, HttpServletRequest request){
 				try {
 						Optional<Icons> icon = service.findById(id);
@@ -57,7 +58,7 @@ public class IconsController {
 				return new ResponseEntity("Deletion of the Icon was successful", HttpStatus.OK);
 		}
 
-		@PostMapping(consumes = "application/json", produces = "application/json")
+		@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity createNewIcon(@RequestBody Icons newIconInfo, HttpServletRequest request){
 				Icons newIcon;
 				try {
@@ -73,7 +74,7 @@ public class IconsController {
 				return new ResponseEntity(newIcon, HttpStatus.CREATED);
 		}
 
-		@PutMapping(value = "{id}", consumes = "application/json", produces = "application/json")
+		@PutMapping(value = "{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity updateIcon(@PathVariable Long id, @RequestBody Icons updatedIconInfo, HttpServletRequest request){
 				try {
 						if (request.getContentType().equals("application/json")){

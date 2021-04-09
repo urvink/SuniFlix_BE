@@ -5,6 +5,7 @@ import com.flix.suni.service.SocialsService;
 import com.flix.suni.utils.StatusCodes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class SocialsController {
 		@Autowired
 		private SocialsService service;
 
-		@GetMapping(produces = "application/json")
+		@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity<List<Socials>> getAllsocials(HttpServletRequest request){
 				List<Socials> socialsList;
 				try {
@@ -33,7 +34,7 @@ public class SocialsController {
 				return new ResponseEntity(socialsList, HttpStatus.OK);
 		}
 
-		@GetMapping(value = "{id}", produces = "application/json")
+		@GetMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity<Optional<Socials>> getSocial(@PathVariable Long id, HttpServletRequest request){
 				Optional<Socials> social;
 				try {
@@ -62,7 +63,7 @@ public class SocialsController {
 				}
 		}
 
-		@PostMapping(consumes = "application/json", produces = "application/json")
+		@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity<Socials> createNewSocial(@RequestBody Socials newSocialInfo, HttpServletRequest request){
 				try{
 						if ((newSocialInfo.getName() != null) && (newSocialInfo.getImgSrc() != null)){
@@ -76,7 +77,7 @@ public class SocialsController {
 				}
 		}
 
-		@PutMapping(value = "{id}", consumes = "application/json", produces = "application/json")
+		@PutMapping(value = "{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity<Optional<Socials>> updateSocial(@PathVariable Long id, @RequestBody Socials updateInfo, HttpServletRequest request){
 				try {
 						if((updateInfo.getName()!=null) && (updateInfo.getImgSrc() != null)){
