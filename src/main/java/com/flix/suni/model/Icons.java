@@ -3,8 +3,8 @@ package com.flix.suni.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "socials")
-public class Socials {
+@Table(name = "Icons")
+public class Icons{
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private Long id;
@@ -12,15 +12,15 @@ public class Socials {
 		private String name;
 		private String imgSrc;
 
-		public Socials() {
-		}
-
-		public void setId(Long id) {
-				this.id = id;
+		public Icons() {
 		}
 
 		public Long getId() {
 				return id;
+		}
+
+		public void setId(Long id) {
+				this.id = id;
 		}
 
 		public String getName() {

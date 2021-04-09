@@ -7,24 +7,24 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
+//@RestController
 @EnableFeignClients(basePackageClasses = TvdbServiceProxy.class)
-public class TvdbController implements TvdbService {
-
+//public class TvdbController implements TvdbService {
+public class TvdbController{
 		private TvdbServiceProxy proxy;
 
-		@Override
-		public List<Object> getMovies() {
-				return null;
-		}
-
-		@Override
-		public List<Object> getGenres() {
-				return null;
-		}
-
-		@Override
-		public List<Object> getDiscover() {
-				return null;
-		}
+//		@Override
+//		public List<Object> getMovies() {
+//				return proxy.getDiscover();
+//		}
+//
+//		@Override
+//		public List<Object> getGenres() {
+//				return null;
+//		}
+//
+//		@Override
+//		public List<Object> getDiscover() {
+//				return null;
+//		}
 }
