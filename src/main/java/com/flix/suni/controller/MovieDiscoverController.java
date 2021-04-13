@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/api/discover")
 public class MovieDiscoverController {
 		@Autowired
-		private DiscoverService service;
+		private TmdbService service;
 
 		@GetMapping
 		public ResponseEntity<Discover> discoverData(HttpServletRequest request){
