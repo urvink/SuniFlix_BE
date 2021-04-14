@@ -11,5 +11,4 @@ public class SuniFlixApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SuniFlixApplication.class, args);
 	}
-
 }

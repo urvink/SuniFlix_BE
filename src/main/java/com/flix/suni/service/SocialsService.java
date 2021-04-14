@@ -1,7 +1,6 @@
 package com.flix.suni.service;
 
 import com.flix.suni.model.Socials;
-import com.flix.suni.repository.SocialsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

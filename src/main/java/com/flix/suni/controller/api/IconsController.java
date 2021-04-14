@@ -20,7 +20,7 @@ public class IconsController {
 		@Autowired
 		private IconsService service;
 
-		@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+		@GetMapping(produces = "application/json")
 		public ResponseEntity<List<Icons>> getAllIcons(HttpServletRequest request){
 				try{
 						List<Icons> iconsList = service.findAllIcons();
