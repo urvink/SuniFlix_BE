@@ -16,6 +16,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("api/icons")
 public class IconsController {
+
 		@Autowired
 		private IconsService service;
 

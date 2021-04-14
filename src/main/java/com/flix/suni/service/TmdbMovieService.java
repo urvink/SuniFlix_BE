@@ -3,8 +3,8 @@ package com.flix.suni.service;
 import com.flix.suni.model.Discover;
 import com.flix.suni.model.Genres;
 import com.flix.suni.model.MovieDetails;
-import com.flix.suni.utils.Key;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,13 +12,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 import java.util.Optional;
 
-public interface TmdbService {
+@Service
+public class TmdbMovieService implements TmdbService{
 		//Discover
-		public Discover getDiscover();
+		@Override
+		public Discover getDiscover() {
+				return null;
+		}
 
 		//Movie
-		public  Optional<MovieDetails> getMovieDetail(Long id);
+		@Override
+		public Optional<MovieDetails> getMovieDetail(Long id) {
+				return null;
+		}
 
 		//Genre
-		public List<Genres> getGenreList();
+		@Override
+		public List<Genres> getGenreList() {
+				return null;
+		}
 }
+
