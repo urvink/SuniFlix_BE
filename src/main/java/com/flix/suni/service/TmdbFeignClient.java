@@ -6,6 +6,7 @@ import com.flix.suni.model.MovieDetails;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,8 +15,8 @@ import java.util.Optional;
 public interface TmdbFeignClient {
 				//Discover
 				@GetMapping(value = "/discover/movie", produces = "application/json")
-				Discover getDiscover();
-
+				Discover getDiscover(@RequestParam(name = "api_key", value = "${tmdb.api.key}") String apiKey);
+//				Discover getDiscover();
 				//Movies
 				@GetMapping(value = "/movie", produces = "application/json")
 				Optional<MovieDetails> getMovieDetails(@PathVariable("id") Long id);

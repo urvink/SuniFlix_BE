@@ -16,13 +16,15 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/api/discover/movie")
 public class MovieDiscoverController {
 
+		private static final String apiKey = "f885f7563a2d463bb18ed5f450c6c3d9";
+
 		@Autowired
 		private TmdbFeignClient client;
 
 		@GetMapping
 		public ResponseEntity<Discover> discoverData(HttpServletRequest request){
-				System.out.println();
-				Discover discover = client.getDiscover();
+				System.out.println(request);
+				Discover discover = client.getDiscover(apiKey);
 
 				try{
 						return new ResponseEntity(discover, HttpStatus.OK);
