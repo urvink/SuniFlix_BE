@@ -17,6 +17,7 @@ public interface TmdbFeignClient {
 				@GetMapping(value = "/discover/movie", produces = "application/json")
 				Discover getDiscover(@RequestParam(name = "api_key", value = "${tmdb.api.key}") String apiKey);
 //				Discover getDiscover();
+
 				//Movies
 				@GetMapping(value = "/movie", produces = "application/json")
 				Optional<MovieDetails> getMovieDetails(@PathVariable("id") Long id);
