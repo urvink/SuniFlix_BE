@@ -1,18 +1,16 @@
 package com.flix.suni.repository;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import com.flix.suni.model.Icons;
 import com.flix.suni.model.Socials;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 import org.springframework.test.annotation.Rollback;
 
-import javax.swing.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
@@ -32,18 +30,18 @@ public class SocialsRepositoryTest {
 				Socials twitterSocial = new Socials();
 				Socials twitterWhiteSocial = new Socials();
 
-				//Regular FB
+				//Regular Twitter
 				twitterSocial.setName("Twitter");
 				twitterSocial.setImgSrc("https://i.postimg.cc/bvy1bzqx/Twitter-icon-icons-com-66803.png");
 
-				//White FB
+				//White Twitter
 				twitterWhiteSocial.setName("White Twitter");
 				twitterWhiteSocial.setImgSrc("https://i.postimg.cc/tg4JWDdD/Copy-of-twitter-icon-white-png-23.png");
 
-				Socials savedTwitterSocial = repo.save(twitterSocial);
+				Socials savedTwitterSocial = (Socials) repo.save(twitterSocial);
 				System.out.println(savedTwitterSocial.getImgSrc());
 
-				Socials savedTwitterWhiteSocial = repo.save(twitterWhiteSocial);
+				Socials savedTwitterWhiteSocial = (Socials) repo.save(twitterWhiteSocial);
 				System.out.println(savedTwitterWhiteSocial.getImgSrc());
 
 				Socials existTwitterSocial = entityManager.find(Socials.class, savedTwitterSocial.getId());
@@ -68,8 +66,8 @@ public class SocialsRepositoryTest {
 				fbWhiteSocial.setName("White Facebook");
 				fbWhiteSocial.setImgSrc("https://i.postimg.cc/Lsph52hd/Copy-of-Facebookwhiteicon.png");
 
-				Socials savedFacebookSocial = repo.save(fbSocial);
-				Socials savedFacebookWhiteSocial = repo.save(fbWhiteSocial);
+				Socials savedFacebookSocial = (Socials) repo.save(fbSocial);
+				Socials savedFacebookWhiteSocial = (Socials) repo.save(fbWhiteSocial);
 
 				Socials existFacebookSocial = entityManager.find(Socials.class, savedFacebookSocial.getId());
 				Socials existFacebookWhiteSocial = entityManager.find(Socials.class, savedFacebookWhiteSocial.getId());
@@ -89,8 +87,8 @@ public class SocialsRepositoryTest {
 				igWhiteSocial.setName("White Instagram");
 				igWhiteSocial.setImgSrc("https://i.postimg.cc/Wb0dvdbm/Copy-of-Instawhiteicon.png");
 
-				Socials savedInstagramSocial = repo.save(igSocial);
-				Socials savedInstagramWhiteSocial = repo.save(igWhiteSocial);
+				Socials savedInstagramSocial = (Socials) repo.save(igSocial);
+				Socials savedInstagramWhiteSocial = (Socials) repo.save(igWhiteSocial);
 
 				Socials existInstagramSocial = entityManager.find(Socials.class, savedInstagramSocial.getId());
 				Socials existInstagramWhiteSocial = entityManager.find(Socials.class, savedInstagramWhiteSocial.getId());
