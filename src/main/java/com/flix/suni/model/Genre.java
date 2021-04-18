@@ -2,7 +2,7 @@ package com.flix.suni.model;
 
 public class Genre {
 		private Integer id;
-		private String genreName;
+		private String name;
 
 		public Integer getId() {
 				return id;
@@ -12,11 +12,11 @@ public class Genre {
 				this.id = id;
 		}
 
-		public String getGenreName() {
-				return genreName;
+		public String getName() {
+				return name;
 		}
 
-		public void setGenreName(String genreName) {
-				this.genreName = genreName;
+		public void setName(String name) {
+				this.name = name;
 		}
 }

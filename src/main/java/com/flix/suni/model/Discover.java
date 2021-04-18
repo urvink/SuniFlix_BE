@@ -5,7 +5,8 @@ import java.util.List;
 
 public class Discover {
 		private Integer page;
-		private List<MovieDetails> movieDetailsList;
+		private List<MovieDetails> results;
+//		private List<MovieDetails> movieDetailsList;
 		private Integer total_pages;
 		private Integer total_results;
 
@@ -17,12 +18,12 @@ public class Discover {
 				this.page = page;
 		}
 
-		public List<MovieDetails> getMovieDetailsList() {
-				return movieDetailsList;
+		public List<MovieDetails> getResults() {
+				return results;
 		}
 
-		public void setMovieDetailsList(List<MovieDetails> movieDetailsList) {
-				this.movieDetailsList = movieDetailsList;
+		public void setResults(List<MovieDetails> results) {
+				this.results = results;
 		}
 
 		public Integer getTotal_pages() {
