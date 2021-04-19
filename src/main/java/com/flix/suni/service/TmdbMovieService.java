@@ -2,10 +2,10 @@ package com.flix.suni.service;
 
 import com.flix.suni.model.Discover;
 import com.flix.suni.model.Genre;
-import com.flix.suni.model.Genres;
 import com.flix.suni.model.MovieDetails;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,7 +24,7 @@ public class TmdbMovieService implements TmdbService{
 
 		//Genre
 		@Override
-		public Genres<Genre> getGenreList() {
+		public List<Genre> getGenreList() {
 				return null;
 		}
 }

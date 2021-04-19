@@ -1,24 +1,23 @@
 package com.flix.suni.controller.api;
 
-import com.flix.suni.model.Discover;
-import com.flix.suni.model.Genre;
-import com.flix.suni.model.Genres;
-import com.flix.suni.model.MovieDetails;
+import com.flix.suni.model.*;
 import com.flix.suni.service.TmdbFeignClient;
 import com.flix.suni.utils.StatusCodes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
 public class MovieDiscoverController {
-
-		private static final String apiKey = "f885f7563a2d463bb18ed5f450c6c3d9";
 
 		@Autowired
 		private TmdbFeignClient client;
@@ -36,6 +35,8 @@ public class MovieDiscoverController {
 		//Movie details
 		@GetMapping("movie/{id}")
 		public ResponseEntity<MovieDetails> getMovieDetails(@PathVariable Long id, HttpServletRequest request){
+				System.out.println(request);
+
 				try {
 						Optional<MovieDetails> movieDetails =  client.getMovieDetails(id);
 						return new ResponseEntity(movieDetails.get(), HttpStatus.OK);
@@ -44,16 +45,26 @@ public class MovieDiscoverController {
 				}
 		}
 
+		//Movie Trailers
+		@GetMapping("movie/{id}/videos")
+		public  ResponseEntity<List<Video>> getMovieTrailers(@PathVariable Long id, HttpServletRequest request){
+				try{
+						Trailer trailersList = client.getVideos(id);
+						return new ResponseEntity(trailersList, HttpStatus.OK);
+				}catch (Exception e){
+						return new ResponseEntity(StatusCodes.error500, HttpStatus.INTERNAL_SERVER_ERROR);
+				}
+		}
+
 		//Genre List
 		@GetMapping("genre/movie/list")
-		public ResponseEntity<Genres<Genre>> getGenreList(HttpServletRequest request){
+		public ResponseEntity<List<Genre>> getGenreList(HttpServletRequest request){
 
 				try {
-						Genres<Genre> genreList = client.getGenreList();
+						List<Genre> genreList = client.getGenreList();
 						return new ResponseEntity(genreList, HttpStatus.OK);
 				}catch (Exception e){
 						return new ResponseEntity(StatusCodes.error500, HttpStatus.INTERNAL_SERVER_ERROR);
 				}
-
 		}
 }

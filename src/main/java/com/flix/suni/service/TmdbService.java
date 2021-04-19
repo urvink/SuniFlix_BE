@@ -2,9 +2,9 @@ package com.flix.suni.service;
 
 import com.flix.suni.model.Discover;
 import com.flix.suni.model.Genre;
-import com.flix.suni.model.Genres;
 import com.flix.suni.model.MovieDetails;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface TmdbService {
@@ -15,5 +15,5 @@ public interface TmdbService {
 		public  Optional<MovieDetails> getMovieDetail(Long id);
 
 		//Genre
-		public Genres<Genre> getGenreList();
+		public List<Genre> getGenreList();
 }
