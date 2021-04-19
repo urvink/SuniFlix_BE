@@ -6,16 +6,14 @@ import com.flix.suni.utils.StatusCodes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api")
 public class MovieDiscoverController {
 
@@ -24,8 +22,10 @@ public class MovieDiscoverController {
 
 		@GetMapping("discover/movie")
 		public ResponseEntity<Optional<Discover>> discoverData(HttpServletRequest request){
+
 				try{
-						Optional<Discover> discover = Optional.ofNullable(client.getDiscover());
+						Optional<Object> discover = Optional.ofNullable(client.getDiscover());
+						System.out.println(request);
 						return new ResponseEntity(discover.get(), HttpStatus.OK);
 				}catch (Exception e){
 						return new ResponseEntity(StatusCodes.error500, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -58,10 +58,11 @@ public class MovieDiscoverController {
 
 		//Genre List
 		@GetMapping("genre/movie/list")
-		public ResponseEntity<List<Genre>> getGenreList(HttpServletRequest request){
-
+		public ResponseEntity<List<Object>> getGenreList(HttpServletRequest request){
+				System.out.println(request);
+				List<Object> genreList = client.getGenreList();
 				try {
-						List<Genre> genreList = client.getGenreList();
+
 						return new ResponseEntity(genreList, HttpStatus.OK);
 				}catch (Exception e){
 						return new ResponseEntity(StatusCodes.error500, HttpStatus.INTERNAL_SERVER_ERROR);

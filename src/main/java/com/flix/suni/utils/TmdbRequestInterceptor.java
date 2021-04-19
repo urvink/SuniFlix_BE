@@ -17,6 +17,7 @@ public class TmdbRequestInterceptor implements RequestInterceptor {
 
 //				requestTemplate.header(apiKey);
 				requestTemplate.query("api_key", apiKey);
+				requestTemplate.header("Access-Control-Allow-Origin", "*");
 				requestTemplate.header("User-Agent",
 								"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 " +
 								"(KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11");

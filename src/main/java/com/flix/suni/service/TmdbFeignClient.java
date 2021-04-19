@@ -1,6 +1,8 @@
 package com.flix.suni.service;
 
-import com.flix.suni.model.*;
+import com.flix.suni.model.Discover;
+import com.flix.suni.model.MovieDetails;
+import com.flix.suni.model.Trailer;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,5 +26,5 @@ public interface TmdbFeignClient {
 
 				//Genre
 				@GetMapping(value = "/genre/movie/list", produces = "application/json")
-				List<Genre> getGenreList();
+				List<Object> getGenreList();
 		}
