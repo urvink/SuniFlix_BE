@@ -25,6 +25,4 @@ public interface TmdbFeignClient {
 				//Genre
 				@GetMapping(value = "/genre/movie/list", produces = "application/json")
 				List<Genre> getGenreList();
-
-
 		}
