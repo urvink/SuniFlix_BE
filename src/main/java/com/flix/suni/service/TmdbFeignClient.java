@@ -7,7 +7,6 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.List;
 import java.util.Optional;
 
 @FeignClient(name = "movieData", url = "${tmdb.base.api.uri}")
@@ -26,5 +25,10 @@ public interface TmdbFeignClient {
 
 				//Genre
 				@GetMapping(value = "/genre/movie/list", produces = "application/json")
-				List<Object> getGenreList();
+				Optional<Object> getGenreList();
+
+				//Similar Movies
+				@GetMapping(value = "movie/{id}/similar", produces = "application/json")
+				Optional<Object> getSimilarMovies(@PathVariable Integer id);
+
 		}

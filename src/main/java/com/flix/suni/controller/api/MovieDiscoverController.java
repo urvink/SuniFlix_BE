@@ -1,6 +1,9 @@
 package com.flix.suni.controller.api;
 
-import com.flix.suni.model.*;
+import com.flix.suni.model.Discover;
+import com.flix.suni.model.MovieDetails;
+import com.flix.suni.model.Trailer;
+import com.flix.suni.model.Video;
 import com.flix.suni.service.TmdbFeignClient;
 import com.flix.suni.utils.StatusCodes;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin()
 @RequestMapping("/api")
 public class MovieDiscoverController {
 
@@ -56,14 +59,27 @@ public class MovieDiscoverController {
 				}
 		}
 
+		//Similar movies
+		@GetMapping("movie/{id}/similar")
+		public ResponseEntity<Optional<Object>> getSimilarMovies(@PathVariable Integer id, HttpServletRequest request){
+				//Debug request
+				System.out.println(request);
+				Optional<Object> similarMovies = client.getSimilarMovies(id);
+
+				try{
+						return new ResponseEntity(similarMovies.get(), HttpStatus.OK);
+				}catch (Exception e){
+						return new ResponseEntity(StatusCodes.error500, HttpStatus.INTERNAL_SERVER_ERROR);
+				}
+		}
+
 		//Genre List
 		@GetMapping("genre/movie/list")
-		public ResponseEntity<List<Object>> getGenreList(HttpServletRequest request){
+		public ResponseEntity<Optional<Object>> getGenreList(HttpServletRequest request){
 				System.out.println(request);
-				List<Object> genreList = client.getGenreList();
+				Optional<Object> genreList = client.getGenreList();
 				try {
-
-						return new ResponseEntity(genreList, HttpStatus.OK);
+						return new ResponseEntity(genreList.get(), HttpStatus.OK);
 				}catch (Exception e){
 						return new ResponseEntity(StatusCodes.error500, HttpStatus.INTERNAL_SERVER_ERROR);
 				}
