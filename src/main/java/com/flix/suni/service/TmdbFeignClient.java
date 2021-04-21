@@ -31,17 +31,20 @@ public interface TmdbFeignClient {
 				@GetMapping(value = "movie/{id}/similar", produces = "application/json")
 				Optional<Object> getSimilarMovies(@PathVariable Integer id);
 
+				/*
 				//80s Movies
-				@GetMapping("/discover/movie/{}")
+				@GetMapping("/discover/movie/")
 
 				//90s Movies
-				@GetMapping("/discover/movie/{}")
+				@GetMapping("/discover/movie/")
 
 				//00s Movies
-				@GetMapping("/discover/movie/{}")
+				@GetMapping("/discover/movie/")
 
 				//Films van Disney tonen
-				@GetMapping("/discover/movie/{}")
+				@GetMapping("/discover/movie/")
 
 				//Films van bepaalde actrice/acteur tonen
+
+				 */
 		}
