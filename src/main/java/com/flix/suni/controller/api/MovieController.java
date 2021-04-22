@@ -2,12 +2,11 @@ package com.flix.suni.controller.api;
 
 import com.flix.suni.model.MovieDetails;
 import com.flix.suni.model.Trailer;
+import com.flix.suni.model.TrailerLink;
 import com.flix.suni.model.Video;
 import com.flix.suni.service.TmdbFeignClient;
 import com.flix.suni.utils.StatusCodes;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.Immutable;
-import org.springframework.data.util.Pair;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -56,19 +55,15 @@ public class MovieController {
 						}); */
 
 						for (Video item: trailersList.getResults()) {
-								Pair<String, String> link;
-								Object href = new Object();
-								Object rel = new Object();
+								TrailerLink link = new TrailerLink();
 
 								switch (item.getSite()){
 										case "Vimeo":
-												href = makeVimeoLink(item);
+												link.setHref(makeVimeoLink(item));
 												break;
-										default: href = makeYoutubeLink(item);
+										default: link.setHref(makeYoutubeLink(item));
 								}
-								rel = item.getName();
-								link.add(rel);
-								link.add(href);
+								link.setRel(item.getName());
 								linksList.add(link);
 						}
 
