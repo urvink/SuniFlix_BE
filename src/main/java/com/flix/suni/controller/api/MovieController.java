@@ -29,7 +29,8 @@ public class MovieController {
 
 				try {
 						Optional<MovieDetails> movieDetails =  client.getMovieDetails(id);
-						//TODO: Make trailer links here!!
+						//TODO: Make videos (trailer) links here!!
+						//TODO: Make Similar links here!!
 
 						return new ResponseEntity(movieDetails.get(), HttpStatus.OK);
 				}catch (Exception e){
@@ -43,16 +44,6 @@ public class MovieController {
 				List<Object> linksList = new ArrayList<>();
 				try{
 						Trailer trailersList = client.getVideos(id);
-						/**
-						trailersList.getResults().forEach(t-> {
-								List<String> links = new ArrayList<>();
-								switch (t.getSite()){
-										case "Vimeo":
-												links.add(makeVimeoLink(t));
-												break;
-										default: links.add(makeYoutubeLink(t));
-								}
-						}); */
 
 						for (Video item: trailersList.getResults()) {
 								TrailerLink link = new TrailerLink();
