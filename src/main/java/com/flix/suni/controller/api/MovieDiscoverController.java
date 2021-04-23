@@ -40,7 +40,7 @@ public class MovieDiscoverController {
 
 				try{
 						Optional<Discover> withCompany = client.getWithCompaniesMovies(id);
-						return new ResponseEntity(HttpStatus.OK);
+						return new ResponseEntity(withCompany.get(), HttpStatus.OK);
 				}catch(Exception e){
 						return new ResponseEntity(StatusCodes.error500, HttpStatus.INTERNAL_SERVER_ERROR);
 				}

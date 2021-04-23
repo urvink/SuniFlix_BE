@@ -18,7 +18,7 @@ public interface TmdbFeignClient {
 
 				//80s/ 90s/ 00s Movies
 				@GetMapping(value = "discover/movie?release_date.gte={gte}&release_date.lte={lte}", produces = "application/json")
-				Optional<Discover> getEraMovies(String gte, String lte );
+				Optional<Discover> getEraMovies(@PathVariable String gte, @PathVariable String lte );
 
 				//With Companies
 				@GetMapping("discover/movie?with_companies={id}")
