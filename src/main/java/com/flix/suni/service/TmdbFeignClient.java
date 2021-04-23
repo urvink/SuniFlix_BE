@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.time.LocalDate;
 import java.util.Optional;
 
 @FeignClient(name = "movieData", url = "${tmdb.base.api.uri}")
@@ -17,9 +16,13 @@ public interface TmdbFeignClient {
 				@GetMapping(value = "/discover/movie", produces = "application/json")
 				Discover getDiscover();
 
-				//80s Movies
-				@GetMapping("disover/movie?release_date.gte={greaterThan}&release_date.lte={lowerThan}")
-				Optional<Object> get80sMovies(@RequestParam LocalDate greaterThan, @RequestParam LocalDate lowerThan);
+				//80s/ 90s/ 00s Movies
+				@GetMapping("discover/movie?release_date.gte={gte}&release_date.lte={lte}")
+				Optional<Discover> getEraMovies(@RequestParam String gte, @RequestParam String lte );
+
+				//With Companies
+				@GetMapping("discover/movie?with_companies={id}")
+				Optional<Discover> getWithCompaniesMovies(@RequestParam Integer id);
 
 				//Movie detail
 				@GetMapping(value = "/movie/{id}", produces = "application/json")

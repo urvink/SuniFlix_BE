@@ -1,6 +1,7 @@
 package com.flix.suni.controller.api;
 
 import com.flix.suni.model.Discover;
+import com.flix.suni.model.Release_Date;
 import com.flix.suni.service.TmdbFeignClient;
 import com.flix.suni.utils.StatusCodes;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,32 +34,44 @@ public class MovieDiscoverController {
 				}
 		}
 
-		//80s
-		@GetMapping("discover/movie/{era}")
-		public ResponseEntity<List<Object>> getMovieEra(@PathVariable Integer era){
-				LocalDate gte = null;
-				LocalDate lte = null;
-
+		//With Companies
+		@GetMapping("discover/movie/{companies}")
+		public ResponseEntity<List<Discover>> getDiscoverWithCompanies(HttpServletRequest request){
 				try{
+
+						return new ResponseEntity(HttpStatus.OK);
+				}catch(Exception e){
+						return new ResponseEntity(StatusCodes.error500, HttpStatus.INTERNAL_SERVER_ERROR);
+				}
+		}
+
+		//80s/90s/ 00s
+		@GetMapping("discover/movie/{era}")
+		public ResponseEntity<List<Discover>> getMovieEra(@PathVariable Integer era){
+				Release_Date release_date = new Release_Date();
 
 						switch (era){
 								case 80:
-										gte.getEra();
-										lte.getEra();
+										release_date.setGte("1980-01-01");
+										release_date.setLte("1989-12-31");
 										break;
 								case 90:
-										gte.getEra();
-										lte.getEra();
+										release_date.setGte("1990-01-01");
+										release_date.setLte("1999-12-31");
 										break;
 								case 00:
-										gte.getEra();
-										lte.getEra();
+										release_date.setGte("2000-01-01");
+										release_date.setLte("2009-12-31");
 										break;
 								default:
 										System.out.println("NOPE!! DEFAULT TRIGGERED!");
 						}
-						Optional<Object> movieData = client.get80sMovies(gte, lte);
-						return new ResponseEntity(movieData, HttpStatus.OK);
+				System.out.println("GTE is "+ release_date.getGte() +"\n LTE is "+release_date.getLte());
+
+						Optional<Discover> movieData = client.getEraMovies(release_date.getGte(), release_date.getLte());
+				System.out.println(movieData.get());
+				try{
+						return new ResponseEntity(movieData.get(), HttpStatus.OK);
 				}catch (Exception e){
 						return new ResponseEntity(StatusCodes.error500, HttpStatus.INTERNAL_SERVER_ERROR);
 				}
