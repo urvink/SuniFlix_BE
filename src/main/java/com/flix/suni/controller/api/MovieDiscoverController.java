@@ -35,10 +35,11 @@ public class MovieDiscoverController {
 		}
 
 		//With Companies
-		@GetMapping("discover/movie/{companies}")
-		public ResponseEntity<List<Discover>> getDiscoverWithCompanies(HttpServletRequest request){
-				try{
+		@GetMapping("discover/movie/companies/{id}")
+		public ResponseEntity<Discover> getDiscoverWithCompanies(@PathVariable Integer id, HttpServletRequest request){
 
+				try{
+						Optional<Discover> withCompany = client.getWithCompaniesMovies(id);
 						return new ResponseEntity(HttpStatus.OK);
 				}catch(Exception e){
 						return new ResponseEntity(StatusCodes.error500, HttpStatus.INTERNAL_SERVER_ERROR);
